@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Diseño y nuevos medios, segunda versión remota" />
+        <link href="style.css" rel="stylesheet" />
+        <title>&#9997; DibujApp1</title>
+    </head>
+    <body>
+        <header>
+            <div>
+                <h1>&#9997; DibujApp<span></span></h1>
+            </div>
+                        Ver dibujos en: <a href="./Galeria.html"> Galeria</a>
+            <div></div>
+            <div></div>
+        </header>
+        <main></main>
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
+        <script>
+            var main = document.querySelector("main");
+            var footer = document.querySelector("footer");
+            var menuColor = document.getElementsByTagName("div")[1];
+            var menuGrosor = document.getElementsByTagName("div")[2];
+            var menuDescargar = document.getElementsByTagName("div")[3];
+            var colorido, grosor, descarga;
+          
+
+            function setup() {
+                createCanvas(windowWidth, windowHeight).parent(main);
+                background(100000);
+                colorido = createColorPicker("#631396").parent(menuColor);
+                createSpan("Grosor ").parent(menuGrosor);
+                grosor = createSelect().parent(menuGrosor);
+                grosor.option("Muy extra fino", 1);
+                grosor.option("Extra fino", 2);
+                grosor.option("Fino", 3);
+                grosor.option("Normal", 4);
+                grosor.option("Un poquito mas grueso", 5);
+                grosor.option("Grueso", 6);
+                grosor.option("Muy grueso", 7);
+                grosor.option("Muy extra grueso", 8);
+                grosor.option("Para colorear", 9);
+                grosor.selected(4);
+                descarga = createButton("Descargar").parent(main);
+                descarga.mousePressed(descargar);
+                instructivo();
+            }
+
+            function draw() {
+                stroke(colorido.color());
+                strokeWeight(grosor.value());
+                if (mouseIsPressed) {
+                    line(pmouseX, pmouseY, mouseX, mouseY);
+                }
+            }
+
+            function descargar() {saveCanvas("Obra_de_arte", "jpg")
+                
+            }
+            
+            function instructivo(){
+                alert("Bienvenid@ a DibujApp! Dibuja y descarga tus obras para compartirlas con quien quieras!!")
+            }
+            
+
+        </script>
+    </body>
+</html>
